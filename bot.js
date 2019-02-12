@@ -1,5 +1,8 @@
 const Discord = require("discord.js");
 const client = new Discord.Client();
+client.on('ready', () => {
+console.log('ready')
+})
 var prefix = "!";
 var adminprefix = '!'
 
@@ -12,7 +15,7 @@ client.on("message", async message => {
         let guildicon = guild.icon_url
         let members = guild.memberCount
         let bots = guild.members.filter(m => m.user.bot).size
-        let humans = members - bots
+        let humans = guild.members.filter(m => !m.user.bot).size
         let allchannels = guild.channels.size
         let textchannels = guild.channels.filter(e => e.type === "text")
         let voicechannels = guild.channels.filter(e => e.type === "voice")
@@ -354,8 +357,6 @@ client.on("message", (message) => {
    }
  
 });
-
-
 
 
 
